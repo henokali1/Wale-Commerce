@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+# Product DB
+class Product(models.Model):
+    title = models.CharField(max_length=250, default='')
+    price = models.FloatField(default=0.0)
+    description = models.TextField(default="")
+    def __str__(self):
+        return str(self.pk) + ' - ' + self.title

@@ -3,6 +3,10 @@ from django.shortcuts import render
 from .models import *
 import urllib.parse
 
+# Test page
+def t(request):
+    return render(request, 'pages/t.html')
+
 # Home page
 def pages(request):
 	return render(request, 'pages/index.html')
@@ -20,3 +24,4 @@ def add_prodcut(request):
         title = request.POST['product_title']
         print(title)
     return render(request, 'pages/add-product.html', args)
+
