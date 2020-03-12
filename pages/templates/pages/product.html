@@ -71,63 +71,28 @@
    <div class="row mt-5">
    	 <h2>Similar Products</h2>
    </div>
-   
-   <div class="row mt-5">
-   	<div class="col-md-3">
-   		<div class="card">
-   			<img class="card-img-top img-fluid" src="{% static "pages/img/c61.jpg" %}">
-   			<div class="card-title">
-   				<h4>GYM Tops</h4>
-   			</div> 
-   			<div class="card-text">
-   				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae fugiat et voluptate sunt officia vero molestias.<br/><br/>
-   				<a class="btn btn-success text-light"> Buy Now</a> &nbsp; <a class="btn btn-danger text-light"><i class="fa fa-cart-plus" aria-hidden="true"></i>  Add To Cart</a> <br/><br/>
-   			</div>
-   		</div>
-   	</div>
-   	
-   	
-   	<div class="col-md-3">
-   		<div class="card">
-   			<img class="card-img-top img-fluid" src="{% static "pages/img/c94.jpg" %}">
-   			<div class="card-title">
-   				<h4>GYM Tops</h4>
-   			</div> 
-   			<div class="card-text">
-   				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae fugiat et voluptate sunt officia vero molestias.<br/><br/>
-   				<a class="btn btn-success text-light"> Buy Now</a> &nbsp; <a class="btn btn-danger text-light"><i class="fa fa-cart-plus" aria-hidden="true"></i>  Add To Cart</a> <br/><br/>
-   			</div>
-   		</div>
-   	</div>
-   	
-   	
-   	<div class="col-md-3">
-   		<div class="card">
-   			<img class="card-img-top img-fluid" src="{% static "pages/img/c132.jpg" %}">
-   			<div class="card-title">
-   				<h4>GYM Tops</h4>
-   			</div> 
-   			<div class="card-text">
-   				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae fugiat et voluptate sunt officia vero molestias.<br/><br/>
-   				<a class="btn btn-success text-light"> Buy Now</a> &nbsp; <a class="btn btn-danger text-light"><i class="fa fa-cart-plus" aria-hidden="true"></i>  Add To Cart</a> <br/><br/>
-   			</div>
-   		</div>
-   	</div>
-   	
-   	<div class="col-md-3">
-   		<div class="card">
-   			<img class="card-img-top img-fluid" src="{% static "pages/img/c172.jpg" %}">
-   			<div class="card-title">
-   				<h4>GYM Tops</h4>
-   			</div> 
-   			<div class="card-text">
-   				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae fugiat et voluptate sunt officia vero molestias.<br/><br/>
-   				<a class="btn btn-success text-light"> Buy Now</a> &nbsp; <a class="btn btn-danger text-light"><i class="fa fa-cart-plus" aria-hidden="true"></i>  Add To Cart</a> <br/><br/>
-   			</div>
-   		</div>
-   	</div>
-   </div>
-   
-   
+   <br>
+
+    <div class="row">
+        {% for product in similar_products %}
+        
+            <div class="col-sm-6 col-md-4 col-lg-3">
+            <div>
+                <a href="/product/{{product.pk}}/">
+                    <div class="card product-card">
+                        <img class="img card-img-top img-fluid" src="{{ product.product_image }}">
+                        <div class="card-body">
+                            <div class="card-title"> {{product.title|truncatechars:20}}</div>
+                            <!-- <div class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto hic nobis molestias rem eius assumenda.<br/>
+                                <a class="btn btn-info">Buy Now</a> &nbsp; &nbsp; <a class="btn btn-success">Add To Cart</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+            </div>
+        {% endfor %}
+    </div> 
 </div>
 {% endblock content %}

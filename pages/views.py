@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import *
 import urllib.parse
@@ -31,7 +32,9 @@ def product(request):
 # Product page
 def product_detail(request, pk):
     product = Product.objects.all().filter(pk=pk)[0]
-    args = {'product': product}
+    similar_products = Product.objects.all()[0:4]
+    print(similar_products)
+    args = {'product': product, 'similar_products':similar_products}
     return render(request, 'pages/product.html', args)
 
 # Add product page
