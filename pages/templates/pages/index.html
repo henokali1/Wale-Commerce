@@ -12,6 +12,36 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="owl-carousel">
+        {% for product in products %}
+            <div>
+                <a href="/product/{{product.pk}}/">
+                    <div class="card product-card">
+                        <img class="img card-img-top img-fluid" src="{{ product.product_image }}">
+                        <div class="card-body">
+                            <div class="card-title"> {{product.title|truncatechars:20}}</div>
+                            <!-- <div class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto hic nobis molestias rem eius assumenda.<br/>
+                                <a class="btn btn-info">Buy Now</a> &nbsp; &nbsp; <a class="btn btn-success">Add To Cart</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-md-12">
+            <h1 class="text-center">Products</h1>
+        </div>
+    </div>
+</div>
+
 
 <div class="container">
     <div class="owl-carousel">

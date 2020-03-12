@@ -2,26 +2,52 @@ from django.views.generic import TemplateView
 from django.shortcuts import render
 from .models import *
 import urllib.parse
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 # Test page
 def t(request):
-    return render(request, 'pages/t.html')
+    if request.method == 'POST':
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        return render(request, 'pages/t.html', {'uploaded_file_url': uploaded_file_url})
+    else:
+        return render(request, 'pages/t.html')
 
 # Home page
 def pages(request):
-	return render(request, 'pages/index.html')
+    args = {}
+    all_products = Product.objects.all()
+    args['products'] = all_products
+    return render(request, 'pages/index.html', args)
 
 # Product page
 def product(request):
     args = {}
     return render(request, 'pages/product.html', args)
 
+# Product page
+def product_detail(request, pk):
+    product = Product.objects.all().filter(pk=pk)[0]
+    args = {'product': product}
+    return render(request, 'pages/product.html', args)
+
 # Add product page
 def add_prodcut(request):
     args = {}
     if request.method == 'POST':
-        # new_trainee = EnrollTrainee()
-        title = request.POST['product_title']
-        print(title)
+        myfile = request.FILES['product_image']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+
+        new_product = Product()
+        new_product.title = request.POST['product_title']
+        new_product.price = request.POST['price']
+        new_product.description = request.POST['description']
+        new_product.product_image = uploaded_file_url
+        new_product.save()
     return render(request, 'pages/add-product.html', args)
 
